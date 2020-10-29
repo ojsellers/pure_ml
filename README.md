@@ -1,2 +1,2 @@
 # pure_ml
-Pure Python implementations of machine learning algorithms to gain deeper understanding of inner workings
+Pure Python and NumPy implementations of machine learning algorithms to gain deeper understanding of inner workings
