@@ -5,5 +5,4 @@ Supervised Naive Bayes classification method in pure Python
 '''
 
 
-class Naive_Bayes:
-    
+# class Naive_Bayes:
