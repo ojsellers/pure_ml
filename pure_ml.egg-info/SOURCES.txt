@@ -1,8 +1,0 @@
-README.md
-setup.py
-pure_ml.egg-info/PKG-INFO
-pure_ml.egg-info/SOURCES.txt
-pure_ml.egg-info/dependency_links.txt
-pure_ml.egg-info/requires.txt
-pure_ml.egg-info/top_level.txt
-pure_ml.egg-info/zip-safe
