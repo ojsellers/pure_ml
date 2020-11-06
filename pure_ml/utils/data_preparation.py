@@ -5,16 +5,19 @@ Functions to prepare data sets for testing algos
 '''
 
 
+from os import path
 import pandas as pd
 import numpy as np
-from importlib_resources import files
+
+
+from pure_ml import data_path
 
 
 def prepare_classification_data():
     '''
     Load Iris data set and prepare train and test sets
     '''
-    df = pd.read_csv(files('pure_ml.data').joinpath('iris.csv'))
+    df = pd.read_csv(path.join(data_path, 'iris.csv'))
     return train_test_split(df.drop(columns='species'), df['species'])
 
 
