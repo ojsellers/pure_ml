@@ -1,8 +1,8 @@
-'''
+"""
 Created on 31/10/2020 by Ollie
 
 Functions to prepare data sets for testing algos
-'''
+"""
 
 
 from os import path
@@ -14,15 +14,15 @@ from pure_ml import data_path
 
 
 def prepare_classification_data():
-    '''
+    """
     Load Iris data set and prepare train and test sets
-    '''
+    """
     df = pd.read_csv(path.join(data_path, 'iris.csv'))
     return train_test_split(df.drop(columns='species'), df['species'])
 
 
 def train_test_split(X, y, test_size=0.2, shuffle=True):
-    '''
+    """
     Split data into train and test sets
 
     :param X: feature variables
@@ -30,7 +30,8 @@ def train_test_split(X, y, test_size=0.2, shuffle=True):
     :param y: target variable
                 (pd.Series object)
     :return: X_train, y_train, X_test, y_test
-    '''
+                (pd.DataFrame and pd.Series objects)
+    """
     # check no instances missing from features or target
     assert len(X) == len(y)
 
@@ -48,7 +49,7 @@ def train_test_split(X, y, test_size=0.2, shuffle=True):
 
 
 def standard_scaler():
-    '''
+    """
     Add function to scale normalise data by mean and variance
-    '''
+    """
     pass
