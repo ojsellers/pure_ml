@@ -20,7 +20,7 @@ class test_data_preparation(unittest.TestCase):
 
         assert (all([i in y_test.index for i in X_test.index]) == True)
         assert (all([i in y_train.index for i in X_train.index]) == True)
-        assert (all([i in y_train.index for i in y_test.index]) == False)
+        assert (all([i not in y_train.index for i in y_test.index]) == True)
 
 
 if __name__ == '__main__':
