@@ -19,7 +19,6 @@ class NaiveBayes:
         deviation for each feature for each class
         """
         self.fit_data = {}
-        print(np.unique(y_train))
         for class_ in np.unique(y_train):
             i = (y_train == class_).nonzero()[0]
 
