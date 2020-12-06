@@ -52,13 +52,14 @@ class NaiveBayes:
         for class_ in self.fit_data.keys():
             prob_ = 0 
 
-            for col in range(len(X_train)):
+            for col in range(len(X)):
                 prob_ += self._gaussian_likelihood(X[col], 
-                                        self.fit_data[class_]['means'][0],
-                                        self.fit_data[class_]['stds'][0]) 
+                                self.fit_data[class_]['means'][0],
+                                self.fit_data[class_]['stds'][0]) 
 
-            probs.append(prob)
-        return probs
+            probs.append(prob_)
+
+        return list(self.fit_data.keys())[probs.index(max(probs))]
 
 
     def predict(self, X_val):
@@ -77,6 +78,5 @@ if __name__ == '__main__':
     model = NaiveBayes()
     model.fit(X_train, y_train)
     y_pred = model.predict(X_val)
-    print(y_pred)
 
-    # print(accuracy(y_pred, y_true))
+    print(accuracy(y_pred, y_val))
