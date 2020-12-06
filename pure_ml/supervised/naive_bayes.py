@@ -9,6 +9,7 @@ import numpy as np
 
 
 from pure_ml.utils.data_preparation import prepare_classification_data
+from pure_ml.utils.scoring import accuracy
 
 
 class NaiveBayes:
@@ -18,7 +19,9 @@ class NaiveBayes:
         Fit Gaussian Naive Bayes by calculating the prior, mean, standard
         deviation for each feature for each class
         """
+        self.X_train = X_train
         self.fit_data = {}
+
         for class_ in np.unique(y_train):
             i = (y_train == class_).nonzero()[0]
 
@@ -41,20 +44,39 @@ class NaiveBayes:
 
 
     def _get_prediction(self, X):
-        for class in self.fit_data.keys():
-            pass
+        """
+        Get prediction for an individual incidence of data
+        """
+        probs = []
+
+        for class_ in self.fit_data.keys():
+            prob_ = 0 
+
+            for col in range(len(X_train)):
+                prob_ += self._gaussian_likelihood(X[col], 
+                                        self.fit_data[class_]['means'][0],
+                                        self.fit_data[class_]['stds'][0]) 
+
+            probs.append(prob)
+        return probs
 
 
     def predict(self, X_val):
-        # for X in X_val:
-        #     for class in self.class_i.keys():
-        #         prob = (self.fit[class]['prior'] *
-        #             np.sum([self._gaussian_likelihood(x, )]))
-        pass
+        """
+        Return predictions for entire column of X_val data handed to function
+        """
+        # ensure data is same shape as training data
+        assert len(X_val[0]) == len(self.X_train[0]), "Not same as training data"
+
+        return [self._get_prediction(X) for X in X_val]
+
 
 if __name__ == '__main__':
     X_train, y_train, X_val, y_val = prepare_classification_data(to_numpy=True)
 
     model = NaiveBayes()
     model.fit(X_train, y_train)
-    model.predict(X_val)
+    y_pred = model.predict(X_val)
+    print(y_pred)
+
+    # print(accuracy(y_pred, y_true))
