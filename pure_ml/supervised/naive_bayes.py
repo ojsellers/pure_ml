@@ -18,6 +18,11 @@ class NaiveBayes:
         """
         Fit Gaussian Naive Bayes by calculating the prior, mean, standard
         deviation for each feature for each class
+
+        :param X_train: training data features
+                    (np 2D array)
+        :param y_train: target values of type int or string
+                    (np 1D array)
         """
         self.X_train = X_train
         self.fit_data = {}
@@ -53,9 +58,10 @@ class NaiveBayes:
             prob_ = 0 
 
             for col in range(len(X)):
-                prob_ += self._gaussian_likelihood(X[col], 
-                                self.fit_data[class_]['means'][0],
-                                self.fit_data[class_]['stds'][0]) 
+                prob_ += (self.fit_data[class_]['prior'] * 
+                            self._gaussian_likelihood(X[col], 
+                                self.fit_data[class_]['means'][col],
+                                self.fit_data[class_]['stds'][col]))
 
             probs.append(prob_)
 
@@ -65,6 +71,11 @@ class NaiveBayes:
     def predict(self, X_val):
         """
         Return predictions for entire column of X_val data handed to function
+
+        :param X_val: validation data with same features as training data
+                    (np 2d array)
+        :return: 1D column of predictions matching y_train values
+                    (list)
         """
         # ensure data is same shape as training data
         assert len(X_val[0]) == len(self.X_train[0]), "Not same as training data"
