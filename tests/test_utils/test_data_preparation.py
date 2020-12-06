@@ -13,14 +13,14 @@ class test_data_preparation(unittest.TestCase):
 
     def test_prepare_classification_data(self):
 
-        X_train, y_train, X_test, y_test = prepare_classification_data()
+        X_train, y_train, X_val, y_val = prepare_classification_data()
 
-        assert (len(X_test) / (len(X_train) + len(X_test)) == 0.2)
-        assert (len(y_test) / (len(y_train) + len(y_test)) == 0.2)
+        assert (len(X_val) / (len(X_train) + len(X_val)) == 0.2)
+        assert (len(y_val) / (len(y_train) + len(y_val)) == 0.2)
 
-        assert (all([i in y_test.index for i in X_test.index]) == True)
+        assert (all([i in y_val.index for i in X_val.index]) == True)
         assert (all([i in y_train.index for i in X_train.index]) == True)
-        assert (all([i not in y_train.index for i in y_test.index]) == True)
+        assert (all([i not in y_train.index for i in y_val.index]) == True)
 
 
 if __name__ == '__main__':
