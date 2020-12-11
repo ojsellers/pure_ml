@@ -15,6 +15,6 @@ def accuracy(y_pred, y_true):
     to this function must be of the same type e.g. both should be numerical 
 
     """
-    assert y_true.shape == y_pred.shape, "Shapes must match"
+    assert np.shape(y_true) == np.shape(y_pred), "Shapes must match"
     
     return np.sum(y_true == y_pred) / len(y_true)
